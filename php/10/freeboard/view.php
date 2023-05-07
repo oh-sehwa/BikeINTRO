@@ -47,6 +47,7 @@
 		<li><button onclick="check_password('modify', '<?=$num?>')">수정하기</button></li>   
 		<li><button onclick="check_password('delete', '<?=$num?>')">삭제하기</button></li>
 		<li><button onclick="location.href='form.php'">글쓰기</button></li>
+		<li><button onclick="location.href='../../../index.php'">홈으로</button></li>
 	</ul>
 </body>
 </html>

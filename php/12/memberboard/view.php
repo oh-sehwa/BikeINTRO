@@ -53,6 +53,7 @@
 		<li><button onclick="location.href='modify_form.php?num=<?=$num?>&page=<?=$page?>'">수정하기</button></li>   
 		<li><button onclick="location.href='delete.php?num=<?=$num?>&page=<?=$page?>'">삭제하기</button></li>
 		<li><button onclick="location.href='form.php'">글쓰기</button></li>
+		<li><button onclick="location.href='../../../index.php'">홈으로</button></li>
 	</ul>
 </body>
 </html>
