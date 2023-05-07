@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색 결과</title>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- API-NINJAS API Key -->
+    <script>
+        var api_key = 'Md0dyfVdiEFK5ltzUSNxww==6fIlpLrerWvqL5MB';
+    </script>
+</head>
+<body>
+    <div id="searchtable"></div>
+    
+    <script>
+        $(document).ready(function () {
+            // Get the parameters from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const make = urlParams.get('make');
+            const model = urlParams.get('model');
+
+            // Make an API call to get search results
+            $.ajax({
+                method: 'GET',
+                url: `https://api.api-ninjas.com/v1/motorcycles?make=${make}&model=${model}`,
+                headers: { 'X-Api-Key': 'Md0dyfVdiEFK5ltzUSNxww==6fIlpLrerWvqL5MB'},
+                contentType: 'application/json',
+                success: function(result) {
+                    console.log(result);
+
+                    $("#searchtable").empty();
+                    var total_array = result;
+
+                    var tb = "<table><tr><th>모델명</th><th>연식</th><th>기통수</th><th>배기량</th><th>시트고</th></tr>";
+
+                    for (var i in total_array) {
+
+                        var $model = total_array[i].model;
+                        var $year = total_array[i].year;
+                        var $engine = total_array[i].engine;
+                        var $CC = total_array[i].displacement;
+                        var $seat = total_array[i].seat_height;
+
+                        var row = "";
+                        row += "<tr>";
+                        row += `
+                            <td>${$model}</td><td>${$year}</td><td>${$engine}</td><td>${$CC}</td><td>${$seat}</td>`
+                        row += "</tr>";
+
+                        tb += row;
+                    }
+
+                    tb += "</table>"
+                    $("#searchtable").append(tb);
+                    $("#searchtable > table").addClass("table table-striped");
+
+                },
+                error: function ajaxError(jqXHR) {
+                    console.error('Error: ', jqXHR.responseText);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
