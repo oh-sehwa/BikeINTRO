@@ -20,7 +20,8 @@
 <html>
 <head> 
 <meta charset="utf-8">
-<title>PHP+데이터베이스 입문</title>
+<title>비회원 게시판</title>
+<link rel="icon" href="../../../favicon-removebg-preview.png" />
 <link rel="stylesheet" href="style.css">
 <script>
 	function check_password(mode, num) {

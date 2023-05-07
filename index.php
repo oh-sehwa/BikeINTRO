@@ -65,7 +65,7 @@
             ?>                
               <li><a href="form.php">회원가입</a></li>
               <li><a href="login_form.php">로그인</a></li>
-              <li><a href="php/10/freeboard/form.php">비회원 게시판</a></li>
+              <li><a href="php/10/freeboard/list.php">비회원 게시판</a></li>
             <?php
                 } else {
                 $logged = $username."(".$userid.")";

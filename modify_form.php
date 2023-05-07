@@ -91,8 +91,10 @@
             </li>                        
         </ul>                       
 		<ul class="buttons">
-	        <li><button type="button" onclick="check_input()">저장하기</button></li>
+	        <li><button type="button" onclick="check_input()">수정하기</button></li>
             <li><button type="button" onclick="reset_form()">취소하기</button></li>
+			<li><button onclick="location.href='index.php'">홈으로</button></li>
+
         </ul>
     </form>
 </body>

@@ -16,6 +16,6 @@
 
     // 로그인 폼으로 이동
     echo "<script>
-	          location.href = 'login_form.php';
+	          location.href = 'index.php';
 	      </script>";
 ?>

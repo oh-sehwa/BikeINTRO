@@ -1,90 +1,173 @@
-<!DOCTYPE html>
-<html>
-<head> 
-<meta charset="utf-8">
-<title>PHP+MySQL 입문</title>
-<link rel="stylesheet" href="style.css">
-<script>
-   function check_input() {
-      if (!document.member.id.value) {
-          alert("아이디를 입력하세요!");    
-          document.member.id.focus();
-          return;
-      }
-      if (!document.member.pass.value) {
-          alert("비밀번호를 입력하세요!");    
-          document.member.pass.focus();
-          return;
-      }
-      if (!document.member.pass_confirm.value) {
-          alert("비밀번호확인을 입력하세요!");    
-          document.member.pass_confirm.focus();
-          return;
-      }
-      if (!document.member.name.value) {
-          alert("이름을 입력하세요!");    
-          document.member.name.focus();
-          return;
-      }
-      if (!document.member.email.value) {
-          alert("이메일 주소를 입력하세요!");    
-          document.member.email.focus();
-          return;
-      }
-      if (document.member.pass.value != document.member.pass_confirm.value) {
-          alert("비밀번호가 일치하지 않습니다.\n다시 입력해 주세요!");
-          document.member.pass.focus();
-          document.member.pass.select();
-          return;
-      }
-      document.member.submit();
-   }
-   function reset_form() {
-      document.member.id.value = "";  
-      document.member.pass.value = "";
-      document.member.pass_confirm.value = "";
-      document.member.name.value = "";
-      document.member.email.value = "";
-      document.member.id.focus();
-      return;
-   }
-   function check_id() {
-     window.open("check_id.php?id=" + document.member.id.value,
-         "IDcheck",
-          "left=700,top=300,width=380,height=160,scrollbars=no,resizable=yes");
-   }
-</script>
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+    <script src="/docs/5.3/assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.111.3">
+    <title>회원가입 페이지</title>
+    <link rel="icon" href="favicon-removebg-preview.png" />
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
+    <meta name="theme-color" content="#712cf9">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .b-example-divider {
+            width: 100%;
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .btn-bd-primary {
+            --bd-violet-bg: #712cf9;
+            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+            --bs-btn-font-weight: 600;
+            --bs-btn-color: var(--bs-white);
+            --bs-btn-bg: var(--bd-violet-bg);
+            --bs-btn-border-color: var(--bd-violet-bg);
+            --bs-btn-hover-color: var(--bs-white);
+            --bs-btn-hover-bg: #6528e0;
+            --bs-btn-hover-border-color: #6528e0;
+            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+            --bs-btn-active-color: var(--bs-btn-hover-color);
+            --bs-btn-active-bg: #5a23c8;
+            --bs-btn-active-border-color: #5a23c8;
+        }
+
+        .bd-mode-toggle {
+            z-index: 1500;
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="css/sign-in.css" rel="stylesheet">
 </head>
-<body> 
+
+<body class="text-center">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="check2" viewBox="0 0 16 16">
+            <path
+                d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+        </symbol>
+        <symbol id="circle-half" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+        </symbol>
+        <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+            <path
+                d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
+            <path
+                d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
+        </symbol>
+        <symbol id="sun-fill" viewBox="0 0 16 16">
+            <path
+                d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+        </symbol>
+    </svg>
+
+    
+    
+
+    <main class="form-signin w-100 m-auto">
+    <a href="index.php"><img class="mb-4" src="images/logo.png" alt="" width="110" height="110"></a>
+    <h2>회원가입</h2>
     <form name="member" action="insert.php" method="post">
-		<h2>회원 가입</h2>
-    	<ul class="join_form">
-            <li>
-                <span class="col1">아이디</span>
-                <span class="col2"><input type="text" name="id"></span>
-                <span class="col3"><button type="button" onclick="check_id()">중복체크</button></span>                    
-            </li>
-            <li>
-                <span class="col1">비밀번호</span>
-                <span class="col2"><input type="password" name="pass"></span>               
-            </li>
-            <li>
-                <span class="col1">비밀번호 확인</span>
-                <span class="col2"><input type="password" name="pass_confirm"></span>               
-            </li>            
-            <li>
-                <span class="col1">이름</span>
-                <span class="col2"><input type="text" name="name"></span>               
-            </li>
-            <li>
-                <span class="col1">이메일</span>
-                <span class="col2"><input type="text" name="email"></span>               
-            </li>                        
-        </ul>                       
-		<ul class="buttons">
-	        <li><button type="button" onclick="check_input()">가입하기</button></li>
-            <li><button type="button" onclick="reset_form()">가입취소</button></li>
-        </ul>
-    </form>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingName" name="name" placeholder=" ">
+        <label for="floatingName">이름</label>
+    </div>
+    <!-- <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingBirth" name="birth" placeholder="0000-00-00">
+        <label for="floatingBirth">생년월일</label> 
+    </div> -->
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingEmail" name="email" placeholder="name@example.com">
+        <label for="floatingEmail">이메일</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingId" name="id" placeholder="아이디">
+        <label for="floatingId">아이디</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="floatingPassword" name="pass" placeholder="비밀번호">
+        <label for="floatingPassword">비밀번호</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="floatingPassConfirm" name="pass_confirm" placeholder="비밀번호 확인">
+        <label for="floatingPassConfirm">비밀번호 확인</label>
+    </div>
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="robot"> 로봇이 아닙니다
+        </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-success" type="submit">회원가입</button>
+</form>
+    <main>    
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
 </body>
+
 </html>
