@@ -420,7 +420,7 @@
       &copy; <span class="this-year"></span>
       BikeIntro Company. All Rights Reserved.
     </p>
-    <!-- <img src="images/logo_text.png" alt="HEROPY COFFEE" class="logo" /> -->
+    <img src="images/logo_text.png" width="250px" height="30px" alt="BikeINTRO" class="logo" />
   </div>
 </footer>
 
