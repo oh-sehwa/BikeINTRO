@@ -2,7 +2,8 @@
 <html>
 <head> 
 <meta charset="utf-8">
-<title>PHP+MySQL 입문</title>
+<title>정보수정 페이지</title>
+<link rel="icon" href="favicon-removebg-preview.png" />
 <link rel="stylesheet" href="style.css">
 <script>
    function check_input() {
