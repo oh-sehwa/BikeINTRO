@@ -65,7 +65,7 @@
             ?>                
               <li><a href="form.php">회원가입</a></li>
               <li><a href="login_form.php">로그인</a></li>
-              <li><a href="php/10/freeboard/form.php">일반 게시판</a></li>
+              <li><a href="php/10/freeboard/form.php">비회원 게시판</a></li>
             <?php
                 } else {
                 $logged = $username."(".$userid.")";
@@ -73,7 +73,7 @@
             <li><a><?=$logged?></a></li>
             <li><a href="logout.php">로그아웃</a></li>
             <li><a href="modify_form.php">정보수정</a></li>
-            <li><a href="php/12/memberboard/list.php">회원전용 게시판</a></li>
+            <li><a href="php/12/memberboard/list.php">회원 게시판</a></li>
             <?php
                  }
              ?>
