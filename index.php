@@ -406,8 +406,8 @@
       <li><a href="javascript:void(0)">윤리경영 핫라인</a></li>
     </ul>
     <div class="btn-group">
-      <a href="map.html" class="btn btn--white">찾아오시는 길</a>
-      <a href="openkakao.png" class="btn btn--white">신규입점제의</a>
+      <a href="map.html" target="_blank" class="btn btn--white">찾아오시는 길</a>
+      <a href="openkakao.png" target="_blank" class="btn btn--white">신규입점제의</a>
       <a href="javascript:void(0)" class="btn btn--white">사이트 맵</a>
     </div>
     <div class="info">
